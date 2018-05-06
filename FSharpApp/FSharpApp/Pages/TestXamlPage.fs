@@ -14,16 +14,16 @@ type TestXamlPage() as this =
     let _removeButton = base.FindByName<Button>("RemoveButton")
     let _backButton = base.FindByName<Button>("BackButton")
 
-    let peopleList = new ObservableCollection<TestViewModel>()
-    let AddPeople() =
+    let viewModelList = new ObservableCollection<TestViewModel>()
+    let AddItems() =
         for i = 0 to 100 do 
-            peopleList.Add(new TestViewModel(Id=i, Text="This is text"))
+            viewModelList.Add(new TestViewModel(Id=i, Text="This is text"))
 
-    do AddPeople()
-    do _listView.ItemsSource <- peopleList
+    do AddItems()
+    do _listView.ItemsSource <- viewModelList
 
     let backHandler = new EventHandler( fun sender e -> do this.Navigation.PopAsync() |> ignore)
     do _backButton.Clicked.AddHandler(backHandler)
 
-    let removeHandler = new EventHandler( fun sender e -> do peopleList.Remove(peopleList.LastOrDefault()) |> ignore)
+    let removeHandler = new EventHandler( fun sender e -> do viewModelList.Remove(viewModelList.LastOrDefault()) |> ignore)
     do _removeButton.Clicked.AddHandler(removeHandler)
