@@ -2,9 +2,8 @@
 
 open System
 open Xamarin.Forms
-open Xamarin.Forms.Xaml
 
-type MainPage() =
+type MainPage() as this =
     inherit ContentPage()
 
     let testLabel1 = Label ( Text = "F# Test Xamarin.Forms", VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center)
@@ -13,6 +12,10 @@ type MainPage() =
     do stackLayout.Children.Add(testLabel1)
     do stackLayout.Children.Add(testLabel2)
 
+    let button = Button(Text="Navigate to XamlPage")
+    do button.Clicked.AddHandler( new EventHandler(fun sender e -> do this.Navigation.PushAsync(TestXamlPage()) |> ignore ))
+    do stackLayout.Children.Add(button)
+
     do base.Content <- stackLayout
 
     member this.OnButtonClick (sender : Object, args : EventArgs)  = 
@@ -20,9 +23,3 @@ type MainPage() =
 
     override this.OnAppearing() =
         do base.OnAppearing()
-        let newLabel = Label ( Text = "Label added in OnAppearing()", VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center)
-        do stackLayout.Children.Add(newLabel)
-        let button = Button(Text="Navigate to XamlPage")
-        button.Clicked.Add(fun _ ->
-            do this.Navigation.PushAsync(MainPage()) |> ignore)
-        do stackLayout.Children.Add(button)

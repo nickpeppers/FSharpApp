@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="ViewModels\BaseViewModel.fs" />
+    <Compile Include="ViewModels\TestViewModel.fs" />
+    <Compile Include="Pages\TestXamlPage.fs" />
     <Compile Include="Pages\MainPage.fs" />
     <Compile Include="App.fs" />
   </ItemGroup>
