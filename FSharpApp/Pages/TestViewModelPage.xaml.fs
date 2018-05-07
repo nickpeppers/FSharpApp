@@ -6,10 +6,10 @@ open Xamarin.Forms
 open Xamarin.Forms.Xaml
 open System.Collections.ObjectModel
 
-type TestXamlPage() as this =
+type TestViewModelPage() as this =
     inherit ContentPage()
+    let _ = base.LoadFromXaml(typeof<TestViewModelPage>)
 
-    do base.LoadFromXaml(typeof<TestXamlPage>) |> ignore
     let _listView = base.FindByName<ListView>("ListView")
     let _removeButton = base.FindByName<Button>("RemoveButton")
     let _backButton = base.FindByName<Button>("BackButton")

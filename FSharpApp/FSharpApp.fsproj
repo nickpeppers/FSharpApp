@@ -1,19 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\TestViewModelPage.xaml" />
+    <EmbeddedResource Remove="Pages\MainPage.xaml" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewModels\BaseViewModel.fs" />
     <Compile Include="ViewModels\TestViewModel.fs" />
-    <Compile Include="Pages\TestXamlPage.fs" />
-    <Compile Include="Pages\MainPage.fs" />
+    <EmbeddedResource Include="Pages\TestViewModelPage.xaml" />
+    <Compile Include="Pages\TestViewModelPage.xaml.fs">
+      <DependentUpon>TestViewModelPage.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Pages\MainPage.xaml" />
+    <Compile Include="Pages\MainPage.xaml.fs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.fs" />
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
   </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
-  </ItemGroup>
-
 </Project>
