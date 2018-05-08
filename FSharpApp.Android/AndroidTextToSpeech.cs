@@ -7,19 +7,19 @@ namespace FSharpApp.Droid
 {
     public class AndroidTextToSpeech : Java.Lang.Object, ITextToSpeech, TextToSpeech.IOnInitListener
     {
-        TextToSpeech speaker;
-        string toSpeak;
+        TextToSpeech _speaker;
+        string _toSpeak;
 
         public void Speak(string text)
         {
-            toSpeak = text;
-            if (speaker == null)
+            _toSpeak = text;
+            if (_speaker == null)
             {
-                speaker = new TextToSpeech(MainActivity.Instance, this);
+                _speaker = new TextToSpeech(MainActivity.Instance, this);
             }
             else
             {
-                speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+                _speaker.Speak(_toSpeak, QueueMode.Flush, null, null);
             }
         }
 
@@ -27,7 +27,7 @@ namespace FSharpApp.Droid
         {
             if (status.Equals(OperationResult.Success))
             {
-                speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+                _speaker.Speak(_toSpeak, QueueMode.Flush, null, null);
             }
         }
     }
