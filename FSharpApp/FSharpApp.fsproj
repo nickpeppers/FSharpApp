@@ -7,6 +7,13 @@
     <EmbeddedResource Remove="Pages\MainPage.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Update="FSharp.Core" Version="4.3.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ITextToSpeech.fs" />
     <Compile Include="ViewModels\BaseViewModel.fs" />
     <Compile Include="ViewModels\TestViewModel.fs" />
     <EmbeddedResource Include="Pages\TestViewModelPage.xaml" />
@@ -19,8 +26,5 @@
     </Compile>
     <Compile Include="App.fs" />
     <PackageReference Include="Xamarin.Forms" Version="3.0.0.446417" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.3.4" />
   </ItemGroup>
 </Project>
