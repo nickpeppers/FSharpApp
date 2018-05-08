@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:FSharpApp" 
+    x:Class="FSharpApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="Opacity60">#99000000</Color>
+            <Color x:Key="Opacity50">#80000000</Color>
+            <Color x:Key="Opacity40">#66000000</Color>
+            <Color x:Key="Opacity30">#4D000000</Color>
+            <Color x:Key="Opacity20">#33000000</Color>
+            <Color x:Key="Opacity15">#26000000</Color>
+            <Color x:Key="Opacity10">#1A000000</Color>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
