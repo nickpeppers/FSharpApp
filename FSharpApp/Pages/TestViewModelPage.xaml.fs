@@ -1,7 +1,6 @@
 ﻿namespace FSharpApp
 
 open System
-open System.Linq
 open Xamarin.Forms
 open Xamarin.Forms.Xaml
 open System.Collections.ObjectModel
@@ -14,16 +13,22 @@ type TestViewModelPage() as this =
     let _removeButton = base.FindByName<Button>("RemoveButton")
     let _backButton = base.FindByName<Button>("BackButton")
 
-    let viewModelList = new ObservableCollection<TestViewModel>()
-    let AddItems() =
-        for i = 0 to 100 do 
-            viewModelList.Add(new TestViewModel(Id=i, Text="This is text"))
+    let viewModelList = ObservableCollection<TestViewModel>()
+    let AddItems x =
+        for i = 0 to x do 
+            viewModelList.Add(TestViewModel(Id=i, Text="This is text"))
 
-    do AddItems()
+    do AddItems 100
     do _listView.ItemsSource <- viewModelList
 
-    let backHandler = new EventHandler( fun sender e -> do this.Navigation.PopAsync() |> ignore)
+    let backHandler = EventHandler(fun sender e -> do this.Navigation.PopAsync() |> ignore)
     do _backButton.Clicked.AddHandler(backHandler)
 
-    let removeHandler = new EventHandler( fun sender e -> do viewModelList.Remove(viewModelList.LastOrDefault()) |> ignore)
+    let removeHandler = EventHandler(fun sender e -> 
+        try
+            let selectedItem = _listView.SelectedItem :?> TestViewModel
+            do viewModelList.Remove(selectedItem) |> ignore
+        with | exc ->
+            printf "%s\n Exception" exc.Message)
+
     do _removeButton.Clicked.AddHandler(removeHandler)

@@ -3,11 +3,11 @@
 open System.ComponentModel
 
 type BaseViewModel() =
-    let propertyChanged  = new Event<PropertyChangedEventHandler,  PropertyChangedEventArgs>()
+    let propertyChanged = Event<PropertyChangedEventHandler,  PropertyChangedEventArgs>()
 
     interface INotifyPropertyChanged with
         [<CLIEvent>]
         member this.PropertyChanged = propertyChanged.Publish
     
     member self.OnPropertyChanged name =
-        propertyChanged.Trigger(self, new PropertyChangedEventArgs(name))
+        propertyChanged.Trigger(self, PropertyChangedEventArgs(name))

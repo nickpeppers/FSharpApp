@@ -12,7 +12,7 @@ type NewPage() =
 
     let Add x y = x + y
 
-    member this.OnButtonClicked (sender : Object, args : EventArgs) =
+    member this.OnButtonClicked (sender:Object, args:EventArgs) =
         let textValue = _label.Text |> int
         let newText = Add textValue 1
         do _label.Text <- newText.ToString()
